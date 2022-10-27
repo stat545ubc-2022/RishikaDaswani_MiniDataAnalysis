@@ -1,3 +1,5 @@
+# Milestone 2 #
+
 ## Description ## 
 This folder contains the source for milestone 2. In milestone 2, the tasks completed are as follows: 
 1. Tidy/Untidy our dataset 

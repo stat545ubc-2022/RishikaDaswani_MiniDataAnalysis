@@ -1,3 +1,5 @@
+# Milestone 1 #
+
 ## Description ## 
 This folder contains the source for Milestone 1. In Milestone 1 the tasks completed were: 
 1. Selected a dataset to work with, vancouver_trees 
