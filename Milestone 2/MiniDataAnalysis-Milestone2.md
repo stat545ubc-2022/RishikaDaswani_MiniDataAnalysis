@@ -130,7 +130,7 @@ one observation and each cell has only one value. I chose these
 variables as all of them relate to the research questions I explored in
 milestone 1. The questions were whether or not curb and root barrier
 affected the height and diameter of the trees. I also explored specific
-genera and species hennce these columns are important to include. From
+genera and species hence these columns are important to include. From
 the variables I have chosen, I can see that the data is tidy. However,
 overall the dataset might be considered untidy due to some repetitive
 columns, but those are not relevant to my research questions. Hence I
@@ -188,6 +188,10 @@ head(untidy_dataset)
     ## #   HIBISCUS <dbl>, LIQUIDAMBAR <dbl>, PRUNUS <dbl>, CARPINUS <dbl>,
     ## #   QUERCUS <dbl>, CRATAEGUS <dbl>, ROBINIA <dbl>, PARROTIA <dbl>,
     ## #   CORNUS <dbl>, MAGNOLIA <dbl>, CATALPA <dbl>, FAGUS <dbl>, …
+
+The Data above is now untidy as there are NA values in many cells, some
+cells have more than one value and the each row is not necessarily an
+observation.
 
 ## Tidying Data
 
@@ -250,13 +254,13 @@ Explain your decision for choosing the above two research questions.
 At the end of Milestone 1, I was interested to see if there was a
 correlation between height and diameter for the tree species,focusing on
 one particular genera as the dataset is quite large. If we find there is
-a correlation, it would be helpful to carry on and find out which
-species has the largest height and diameter and where the highest
-population of this species is (neighborhood wise). Subsequently, I would
-also like to see if having a root barrier affects the diameter of the
-particular genera of tree chosen. When conducting preliminary analysis
-in Milestone 1, we saw that there is some impact of root barrier on the
-diameters of trees so further investigations would be helpful.
+a correlation, one could answer other questions such as which species
+has the largest height and diameter and where the highest population of
+this species is (neighborhood wise). Subsequently, I would also like to
+see if having a root barrier affects the diameter of the particular
+genera of tree chosen. When conducting preliminary analysis in Milestone
+1, we saw that there is some impact of root barrier on the diameters of
+trees so further investigations would be helpful.
 <!----------------------------------------------------------------------------->
 
 Now, try to choose a version of your data that you think will be
@@ -267,7 +271,7 @@ dropping irrelevant columns, etc.).
 <!--------------------------- Start your work below --------------------------->
 
 ``` r
-#Select only the Magnolia Genera and group by species 
+#Select only the Magnolia Genera 
 vancouver_trees_subset <- vancouver_trees %>% filter(genus_name == "MAGNOLIA") 
 
 #Group by species and count how many trees of each species has been planted 
@@ -341,7 +345,7 @@ Place the code for your plot below.
 <!-------------------------- Start your work below ---------------------------->
 
 ``` r
-#I did not have a plot as such from Milestone 1, hence I am making one below. The basic plot will be height_range_id against diameter plotted across the 5 species. 
+#Plot from Milestone 1 but changed slightly to use the subset created in this milestone. The basic plot will be height_range_id against diameter plotted across the 5 species. 
 ggplot(vancouver_trees_subset, aes(x = height_range_id, y = diameter)) + geom_point(aes(color = species_name), size = 1, alpha = 0.5)
 ```
 
@@ -416,9 +420,12 @@ ggplot(vancouver_trees_species, aes(species_name, diameter)) + geom_boxplot()
 
 ![](MiniDataAnalysis-Milestone2_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->
 
-``` r
-#Using fct_reorder(), I created a plot with the levels of the species column in increasing order of diameter. Normally, the data gets arranged in alphabetical order however I wanted to the species that has the highest mean diameter, hence the function was used to see which species of the Magnolia Genera has the highest diameter. In this case, it is the Kobus species.
-```
+Using fct_reorder(), I created a plot with the levels of the species
+column in increasing order of diameter. Normally, the data gets arranged
+in alphabetical order however I wanted to the species that has the
+highest mean diameter, hence the function was used to see which species
+of the Magnolia Genera has the highest diameter. In this case, it is the
+Kobus species.
 
 <!----------------------------------------------------------------------------->
 <!-------------------------- Start your work below ---------------------------->
@@ -457,9 +464,13 @@ ggplot(vancouver_trees_2) + geom_boxplot(aes(x = diameter_level, y = height_rang
 
 ![](MiniDataAnalysis-Milestone2_files/figure-gfm/unnamed-chunk-8-1.png)<!-- -->
 
-``` r
-#here I have categorized diameter into other categories "very small", "small", "moderate" etc. This is to understand the range of the diameter within the Magnolia Genera and understand it's association with height. Through this plot, we can see that the mean height range ID of trees in the very small diameter category is smaller than the mean height range ID of trees in the small diameter category. Indicating to us that trees with small diameter also have smaller heights for this genera. 
-```
+Here I have categorized diameter into other categories “very small”,
+“small”, “moderate” etc. This is to understand the range of the diameter
+within the Magnolia Genera and understand it’s association with height.
+Through this plot, we can see that the mean height range ID of trees in
+the very small diameter category is smaller than the mean height range
+ID of trees in the small diameter category. Indicating to us that trees
+with small diameter also have smaller heights for this genera.
 
 <!----------------------------------------------------------------------------->
 
@@ -667,7 +678,7 @@ saveRDS(my_lm, here::here("output", "my_lm_rds.RDS"))
 dir(here::here("output"))
 ```
 
-    ## [1] "exported_summary.csv" "my_lm_rds.RDS"
+    ## [1] "exported_summary.csv" "my_lm_rds.RDS"        "README.md"
 
 ``` r
 readRDS(here::here("output", "my_lm_rds.RDS"))
