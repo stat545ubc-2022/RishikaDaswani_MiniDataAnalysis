@@ -101,6 +101,7 @@ untidy_dataset <- untidy_dataset %>% unite(coordinates, c("longitude", "latitude
 head(untidy_dataset)
 
 ```
+
 The Data above is now untidy as there are NA values in many cells, some cells have more than one value and the each row is not necessarily an observation. 
 
 ## Tidying Data
@@ -213,6 +214,7 @@ ggplot(vancouver_trees_species, aes(species_name, diameter)) + geom_boxplot()
 
 
 ```
+
 Using fct_reorder(), I created a plot with the levels of the species column in increasing order of diameter. Normally, the data gets arranged in alphabetical order however I wanted to the species that has the highest mean diameter, hence the function was used to see which species of the Magnolia Genera has the highest diameter. In this case, it is the Kobus species.
 
 <!----------------------------------------------------------------------------->
@@ -235,6 +237,7 @@ ggplot(vancouver_trees_2) + geom_boxplot(aes(x = diameter_level, y = height_rang
   scale_x_discrete(drop = FALSE) + ggtitle("Height Range per level of diameter") +
   theme_bw()
 ```
+
 Here I have categorized diameter into other categories "very small", "small", "moderate" etc. This is to understand the range of the diameter within the Magnolia Genera and understand it's association with height. Through this plot, we can see that the mean height range ID of trees in the very small diameter category is smaller than the mean height range ID of trees in the small diameter category. Indicating to us that trees with small diameter also have smaller heights for this genera. 
 
 <!----------------------------------------------------------------------------->
